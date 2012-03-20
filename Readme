@@ -1,0 +1,7 @@
+One of the shortfalls of modern computing is the pseudo-randomness that pervades the multitude of random functions to generate random numbers. Random.org presents one such way around this by sampling atmospheric noise to seed random functions. Through their HTTP api, one can request a list of random numbers to pipe into their applications for true randomness.
+
+In today's web- and mobile-enabled world, computer security is of the utmost importance. Various methods exist to authenticate users and provide login. One of these methods is the use of passphrases. Diceware is a method for picking such passphrases.
+
+This small demo generates a sequence of five random passphrases using Random.org's api and a Diceware wordlist. It does so through the use of jQuery's $.get() method. The method is used twice: once, as an HTTP request stream; and secondly, to open and query the diceware.wordlist.asc file. The five passphrases are then echoed to the screen through a simply alert dialog.
+
+To run this demo, both files must be placed in the same directory on a web server. passphrase.html can then be run. It can take several seconds for the asynchronous requests to process and the passphrases to be generated.
