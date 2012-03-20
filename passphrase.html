@@ -1,0 +1,39 @@
+<html>
+<head>
+<!-- Use latest version of jQuery -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>
+//get d6 random numbers using random.org api as http stream
+$.get("http://www.random.org/integers/?num=25&min=1&max=6&col=5&base=10&format=plain&rnd=new", function( response ){ 
+	var randoms = [];
+	//dump each 5 digit random number into a 2d array
+	for( var i = 0; i < 5; i++ ){
+		for( var j = 0; j < 5; j++ ){
+			//if 2d array not initialized, create it
+			if( !randoms[i] ){	
+				randoms[i] = [];
+			}
+			randoms[i][j] = response[ i * 10 + j * 2 ];
+		}
+	}
+	//read in diceware wordlist 
+	$.get('diceware.wordlist.asc', function( response ){
+		var passPhrases = '';
+		//for each random number
+		//turn array into a string, find its index within the file
+		//and then add to to the passPhrases
+		for( var i = 0; i < 5; i++ ){
+			var str = randoms[i].toString().replace(/,/g, ''),
+				index = response.indexOf( str ) + 6;
+			passPhrases +=  response.substring( index, response.indexOf( '\n', index ) ) + ' ';
+		}
+		
+		//print passphrases to screen
+		alert( passPhrases );
+	});
+});
+</script>
+</head>
+<body>
+</body>
+</html>
